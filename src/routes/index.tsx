@@ -533,8 +533,8 @@ function Footer() {
           <div>
             <Logo />
             <p className="mt-4 max-w-xs text-[13.5px] leading-relaxed text-[var(--muted)]">
-              A one-person studio run by Mahin Islam, building websites that are fast,
-              thoughtful and worth remembering.
+              A digital studio crafting thoughtful websites, memorable brands and
+              digital experiences for businesses of every stage.
             </p>
           </div>
           <FooterCol title="Solutions" items={[
@@ -545,22 +545,26 @@ function Footer() {
             { l: "E-commerce", to: "/solutions/$slug", params: { slug: "ecommerce" } },
           ]} />
 
-          <FooterCol title="Studio" items={[
-            { l: "About", to: "/about" },
-            { l: "Blog", to: "/blog" },
-            { l: "Insights", to: "/insights" },
-            { l: "Compliance", to: "/compliance" },
+          <FooterCol title="Free tools" items={[
+            { l: "All tools", to: "/tools" },
+            { l: "WhatsApp link generator", to: "/tools/whatsapp-link-generator" },
+            { l: "Website speed report", to: "/insights" },
           ]} />
 
           <div>
-            <div className="text-[12px] font-medium uppercase tracking-wider text-[var(--muted)]">Contact</div>
-            <div className="mt-4 space-y-2 text-[13.5px]">
-              <a href="mailto:hello@shinebetter.online" className="block text-[var(--ink)] hover:underline">hello@shinebetter.online</a>
-              <a href="https://wa.me/8801863861872" className="block text-[var(--ink)] hover:underline">WhatsApp</a>
-              <button onClick={openCookiePreferences} className="text-[var(--muted)] hover:text-[var(--ink)] hover:underline">
-                Cookie preferences
-              </button>
-            </div>
+            <div className="text-[12px] font-medium uppercase tracking-wider text-[var(--muted)]">Studio</div>
+            <ul className="mt-4 space-y-2 text-[13.5px]">
+              <li><Link to="/about" className="text-[var(--ink)] hover:underline">About</Link></li>
+              <li><Link to="/blog" className="text-[var(--ink)] hover:underline">Blog</Link></li>
+              <li><Link to="/compliance" className="text-[var(--ink)] hover:underline">Compliance</Link></li>
+              <li><a href="mailto:hello@shinebetter.online" className="text-[var(--ink)] hover:underline">hello@shinebetter.online</a></li>
+              <li><a href="https://wa.me/8801863861872" className="text-[var(--ink)] hover:underline">WhatsApp</a></li>
+              <li>
+                <button onClick={openCookiePreferences} className="text-[var(--muted)] hover:text-[var(--ink)] hover:underline">
+                  Cookie preferences
+                </button>
+              </li>
+            </ul>
           </div>
         </div>
         <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t pt-6 text-[12.5px] text-[var(--muted)] md:flex-row md:items-center" style={{ borderColor: "var(--border)" }}>
@@ -571,7 +575,9 @@ function Footer() {
           </div>
         </div>
       </div>
+      <WordmarkBand />
     </footer>
+
   );
 }
 
