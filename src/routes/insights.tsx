@@ -138,7 +138,7 @@ function InsightsPage() {
       />
 
       {/* ---------- Audit form ---------- */}
-      <div id="audit" className="container-x -mt-10 md:-mt-14">
+      <div id="audit" className="container-x relative z-10 -mt-10 scroll-mt-24 md:-mt-14">
         <div className="tool-card mx-auto max-w-[760px] p-6 md:p-8">
           <div className="flex items-start gap-3">
             <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#DBEAFE] text-[#1D4ED8]">
