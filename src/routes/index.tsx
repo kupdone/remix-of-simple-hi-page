@@ -15,6 +15,7 @@ import { BrandVideo } from "@/components/BrandVideo";
 
 import { Testimonials } from "@/components/Testimonials";
 import { openCookiePreferences } from "@/components/CookieBanner";
+import { WordmarkBand } from "@/components/WordmarkBand";
 
 export const Route = createFileRoute("/")({
   component: Home,
