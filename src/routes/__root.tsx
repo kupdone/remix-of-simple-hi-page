@@ -11,6 +11,7 @@ import {
 import appCss from "../styles.css?url";
 import { AppSplash } from "@/components/AppSplash";
 import { CookieBanner } from "@/components/CookieBanner";
+import { TransitionOrigin } from "@/components/TransitionOrigin";
 
 function NotFoundComponent() {
   return (
@@ -111,6 +112,7 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
+      <TransitionOrigin />
       <AppSplash />
       <Outlet />
       <CookieBanner />

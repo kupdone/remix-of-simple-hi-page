@@ -15,6 +15,7 @@ import { BrandVideo } from "@/components/BrandVideo";
 
 import { Testimonials } from "@/components/Testimonials";
 import { openCookiePreferences } from "@/components/CookieBanner";
+import { WordmarkBand } from "@/components/WordmarkBand";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -41,9 +42,11 @@ const NAV = [
   { label: "Solutions", href: "#solutions" },
   { label: "About", href: "#about" },
   { label: "FAQ", href: "#faq" },
+  { label: "Tools", to: "/tools" as const },
   { label: "Blog", to: "/blog" as const },
   { label: "Contact", href: "#contact" },
 ];
+
 
 const MENU_GROUPS: Array<{
   label: string;
@@ -71,12 +74,14 @@ const MENU_GROUPS: Array<{
   {
     label: "Resources",
     items: [
+      { label: "Free Tools", sub: "WhatsApp links and speed reports", to: "/tools" },
       { label: "Blog", sub: "Notes on building better sites", to: "/blog" },
       { label: "Compliance Standards", sub: "Accessibility, privacy, cookies and consumer law", to: "/compliance" },
-      { label: "Insights", sub: "Quick checks for your current site", to: "/insights" },
+      { label: "Website Speed Report", sub: "Real Lighthouse scores for your site", to: "/insights" },
     ],
   },
 ];
+
 
 
 const SOLUTIONS = [
@@ -296,9 +301,10 @@ function Hero() {
           </h1>
 
           <p className="mt-7 max-w-[640px] text-[16px] leading-relaxed text-[var(--muted)] md:text-[18px]">
-            Shine Better is a one-person studio run by Mahin Islam. I build fast,
-            thoughtful websites for founders, creators and local businesses, and I
-            make sure they actually reflect the business behind them.
+            Shine Better is a digital studio crafting thoughtful websites,
+            memorable brands, and digital experiences for businesses of every
+            stage.
+
           </p>
 
 
@@ -446,7 +452,7 @@ function TestimonialsWrap() { return <Testimonials />; }
 function Faq() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section className="container-x py-20 md:py-28">
+    <section id="faq" className="container-x py-20 md:py-28 scroll-mt-28">
       <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr]">
         <div>
           <span className="chip mb-4">FAQ</span>
@@ -528,8 +534,8 @@ function Footer() {
           <div>
             <Logo />
             <p className="mt-4 max-w-xs text-[13.5px] leading-relaxed text-[var(--muted)]">
-              A one-person studio run by Mahin Islam, building websites that are fast,
-              thoughtful and worth remembering.
+              A digital studio crafting thoughtful websites, memorable brands and
+              digital experiences for businesses of every stage.
             </p>
           </div>
           <FooterCol title="Solutions" items={[
@@ -540,22 +546,26 @@ function Footer() {
             { l: "E-commerce", to: "/solutions/$slug", params: { slug: "ecommerce" } },
           ]} />
 
-          <FooterCol title="Studio" items={[
-            { l: "About", to: "/about" },
-            { l: "Blog", to: "/blog" },
-            { l: "Insights", to: "/insights" },
-            { l: "Compliance", to: "/compliance" },
+          <FooterCol title="Free tools" items={[
+            { l: "All tools", to: "/tools" },
+            { l: "WhatsApp link generator", to: "/tools/whatsapp-link-generator" },
+            { l: "Website speed report", to: "/insights" },
           ]} />
 
           <div>
-            <div className="text-[12px] font-medium uppercase tracking-wider text-[var(--muted)]">Contact</div>
-            <div className="mt-4 space-y-2 text-[13.5px]">
-              <a href="mailto:hello@shinebetter.online" className="block text-[var(--ink)] hover:underline">hello@shinebetter.online</a>
-              <a href="https://wa.me/8801863861872" className="block text-[var(--ink)] hover:underline">WhatsApp</a>
-              <button onClick={openCookiePreferences} className="text-[var(--muted)] hover:text-[var(--ink)] hover:underline">
-                Cookie preferences
-              </button>
-            </div>
+            <div className="text-[12px] font-medium uppercase tracking-wider text-[var(--muted)]">Studio</div>
+            <ul className="mt-4 space-y-2 text-[13.5px]">
+              <li><Link to="/about" className="text-[var(--ink)] hover:underline">About</Link></li>
+              <li><Link to="/blog" className="text-[var(--ink)] hover:underline">Blog</Link></li>
+              <li><Link to="/compliance" className="text-[var(--ink)] hover:underline">Compliance</Link></li>
+              <li><a href="mailto:hello@shinebetter.online" className="text-[var(--ink)] hover:underline">hello@shinebetter.online</a></li>
+              <li><a href="https://wa.me/8801863861872" className="text-[var(--ink)] hover:underline">WhatsApp</a></li>
+              <li>
+                <button onClick={openCookiePreferences} className="text-[var(--muted)] hover:text-[var(--ink)] hover:underline">
+                  Cookie preferences
+                </button>
+              </li>
+            </ul>
           </div>
         </div>
         <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t pt-6 text-[12.5px] text-[var(--muted)] md:flex-row md:items-center" style={{ borderColor: "var(--border)" }}>
@@ -566,7 +576,9 @@ function Footer() {
           </div>
         </div>
       </div>
+      <WordmarkBand />
     </footer>
+
   );
 }
 
