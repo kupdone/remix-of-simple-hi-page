@@ -41,9 +41,11 @@ const NAV = [
   { label: "Solutions", href: "#solutions" },
   { label: "About", href: "#about" },
   { label: "FAQ", href: "#faq" },
+  { label: "Tools", to: "/tools" as const },
   { label: "Blog", to: "/blog" as const },
   { label: "Contact", href: "#contact" },
 ];
+
 
 const MENU_GROUPS: Array<{
   label: string;
@@ -71,12 +73,14 @@ const MENU_GROUPS: Array<{
   {
     label: "Resources",
     items: [
+      { label: "Free Tools", sub: "WhatsApp links and speed reports", to: "/tools" },
       { label: "Blog", sub: "Notes on building better sites", to: "/blog" },
       { label: "Compliance Standards", sub: "Accessibility, privacy, cookies and consumer law", to: "/compliance" },
-      { label: "Insights", sub: "Quick checks for your current site", to: "/insights" },
+      { label: "Website Speed Report", sub: "Real Lighthouse scores for your site", to: "/insights" },
     ],
   },
 ];
+
 
 
 const SOLUTIONS = [
