@@ -451,7 +451,7 @@ function TestimonialsWrap() { return <Testimonials />; }
 function Faq() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section className="container-x py-20 md:py-28">
+    <section id="faq" className="container-x py-20 md:py-28 scroll-mt-28">
       <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr]">
         <div>
           <span className="chip mb-4">FAQ</span>
