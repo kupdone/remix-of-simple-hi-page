@@ -117,7 +117,8 @@ export async function runPageSpeedFromBrowser(
 ): Promise<PsiReport> {
   const target = normalizeUrl(url);
   if (!target) throw new Error("That doesn't look like a valid website URL.");
-  const res = await fetch(buildPsiUrl(target, strategy));
+  const key = import.meta.env.VITE_PSI_API_KEY as string | undefined;
+  const res = await fetch(buildPsiUrl(target, strategy, key));
   if (!res.ok) {
     throw new Error("Google couldn't analyse that URL. Check it's public and try again.");
   }

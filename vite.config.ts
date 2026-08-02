@@ -78,6 +78,8 @@ export default defineConfig({
         { path: "/blog" },
         { path: "/compliance" },
         { path: "/insights" },
+        { path: "/tools" },
+        { path: "/tools/whatsapp-link-generator" },
       ],
     }),
 
