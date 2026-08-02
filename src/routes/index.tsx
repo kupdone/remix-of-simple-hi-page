@@ -300,9 +300,10 @@ function Hero() {
           </h1>
 
           <p className="mt-7 max-w-[640px] text-[16px] leading-relaxed text-[var(--muted)] md:text-[18px]">
-            Shine Better is a one-person studio run by Mahin Islam. I build fast,
-            thoughtful websites for founders, creators and local businesses, and I
-            make sure they actually reflect the business behind them.
+            Shine Better is a digital studio crafting thoughtful websites,
+            memorable brands, and digital experiences for businesses of every
+            stage.
+
           </p>
 
 
