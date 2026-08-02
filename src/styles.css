@@ -424,3 +424,174 @@
   }
 }
 
+
+@layer components {
+  /* ---------- Radial page transition ---------- */
+  .vt-ripple {
+    position: fixed;
+    z-index: 9999;
+    pointer-events: none;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(10,10,11,0.10) 0%, rgba(10,10,11,0) 70%);
+    animation: vtRipple .5s cubic-bezier(.22,.61,.36,1) forwards;
+  }
+
+  /* ---------- Tool pages (zipchat-style) ---------- */
+  .tool-hero {
+    position: relative;
+    background:
+      radial-gradient(70% 90% at 50% 0%, rgba(147,197,253,0.55) 0%, rgba(147,197,253,0) 70%),
+      linear-gradient(180deg, #DCEBFF 0%, #EAF2FF 40%, var(--bg) 100%);
+  }
+  .tool-eyebrow {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0;
+  }
+  .tool-h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.045em;
+    line-height: 0.98;
+    color: var(--ink);
+  }
+  .tool-h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.02;
+    color: var(--ink);
+  }
+  .tool-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+  }
+  .tool-field {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 15px;
+    color: var(--ink);
+    background: #fff;
+    transition: border-color .15s ease, box-shadow .15s ease;
+  }
+  .tool-field::placeholder { color: var(--muted-2); }
+  .tool-field:focus {
+    outline: none;
+    border-color: var(--ink);
+    box-shadow: 0 0 0 3px rgba(10,10,11,0.06);
+  }
+  .step-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px;
+  }
+  .step-num {
+    display: grid;
+    place-items: center;
+    height: 26px; width: 26px;
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid var(--border);
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .code-block {
+    background: #0F172A;
+    color: #E2E8F0;
+    border-radius: 12px;
+    padding: 16px 18px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    overflow-x: auto;
+    word-break: break-all;
+  }
+  .code-inline {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1px 6px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.9em;
+  }
+
+  /* ---------- Gradient wordmark band ---------- */
+  .wordmark-band {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--bg) 0%, #EAF2FF 30%, #D7E8FF 100%);
+  }
+  .wordmark-band-dark {
+    background: linear-gradient(180deg, #F4F8FF 0%, #DCEBFF 35%, #BFDBFE 100%);
+  }
+  .wordmark-text {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.055em;
+    line-height: 0.78;
+    color: #fff;
+    user-select: none;
+    white-space: nowrap;
+  }
+  .wordmark-glyph {
+    position: absolute;
+    left: -2%;
+    bottom: -12%;
+    width: 22vw;
+    max-width: 220px;
+    opacity: .85;
+  }
+
+  /* ---------- Score dials ---------- */
+  .dial {
+    position: relative;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+  }
+  .dial-num {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+  }
+}
+
+@keyframes vtRipple {
+  from { transform: scale(0); opacity: .9; }
+  to   { transform: scale(1); opacity: 0; }
+}
+
+/* ---------- View Transitions: radial reveal ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-group(root) { animation-duration: .42s; }
+  ::view-transition-old(root) {
+    animation: vtFadeOut .18s cubic-bezier(.4,0,1,1) both;
+    mix-blend-mode: normal;
+  }
+  ::view-transition-new(root) {
+    animation: vtRadialIn .42s cubic-bezier(.22,.61,.36,1) both;
+    mix-blend-mode: normal;
+  }
+}
+@keyframes vtFadeOut {
+  from { opacity: 1; }
+  to   { opacity: 1; }
+}
+@keyframes vtRadialIn {
+  from {
+    clip-path: circle(0% at var(--vt-x, 50%) var(--vt-y, 50%));
+    opacity: .75;
+    filter: blur(2px);
+  }
+  to {
+    clip-path: circle(150% at var(--vt-x, 50%) var(--vt-y, 50%));
+    opacity: 1;
+    filter: blur(0);
+  }
+}
