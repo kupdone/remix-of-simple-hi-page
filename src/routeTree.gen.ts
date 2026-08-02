@@ -17,6 +17,7 @@ import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ToolsIndexRouteImport } from './routes/tools.index'
+import { Route as ToolsWhatsappLinkGeneratorRouteImport } from './routes/tools.whatsapp-link-generator'
 import { Route as SolutionsSlugRouteImport } from './routes/solutions.$slug'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
@@ -60,6 +61,12 @@ const ToolsIndexRoute = ToolsIndexRouteImport.update({
   path: '/tools/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ToolsWhatsappLinkGeneratorRoute =
+  ToolsWhatsappLinkGeneratorRouteImport.update({
+    id: '/tools/whatsapp-link-generator',
+    path: '/tools/whatsapp-link-generator',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const SolutionsSlugRoute = SolutionsSlugRouteImport.update({
   id: '/solutions/$slug',
   path: '/solutions/$slug',
@@ -81,6 +88,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
+  '/tools/whatsapp-link-generator': typeof ToolsWhatsappLinkGeneratorRoute
   '/tools/': typeof ToolsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -93,6 +101,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
+  '/tools/whatsapp-link-generator': typeof ToolsWhatsappLinkGeneratorRoute
   '/tools': typeof ToolsIndexRoute
 }
 export interface FileRoutesById {
@@ -106,6 +115,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
+  '/tools/whatsapp-link-generator': typeof ToolsWhatsappLinkGeneratorRoute
   '/tools/': typeof ToolsIndexRoute
 }
 export interface FileRouteTypes {
@@ -120,6 +130,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/blog/$slug'
     | '/solutions/$slug'
+    | '/tools/whatsapp-link-generator'
     | '/tools/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -132,6 +143,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/blog/$slug'
     | '/solutions/$slug'
+    | '/tools/whatsapp-link-generator'
     | '/tools'
   id:
     | '__root__'
@@ -144,6 +156,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/blog/$slug'
     | '/solutions/$slug'
+    | '/tools/whatsapp-link-generator'
     | '/tools/'
   fileRoutesById: FileRoutesById
 }
@@ -156,6 +169,7 @@ export interface RootRouteChildren {
   RssDotxmlRoute: typeof RssDotxmlRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SolutionsSlugRoute: typeof SolutionsSlugRoute
+  ToolsWhatsappLinkGeneratorRoute: typeof ToolsWhatsappLinkGeneratorRoute
   ToolsIndexRoute: typeof ToolsIndexRoute
 }
 
@@ -217,6 +231,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ToolsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tools/whatsapp-link-generator': {
+      id: '/tools/whatsapp-link-generator'
+      path: '/tools/whatsapp-link-generator'
+      fullPath: '/tools/whatsapp-link-generator'
+      preLoaderRoute: typeof ToolsWhatsappLinkGeneratorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/solutions/$slug': {
       id: '/solutions/$slug'
       path: '/solutions/$slug'
@@ -253,6 +274,7 @@ const rootRouteChildren: RootRouteChildren = {
   RssDotxmlRoute: RssDotxmlRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SolutionsSlugRoute: SolutionsSlugRoute,
+  ToolsWhatsappLinkGeneratorRoute: ToolsWhatsappLinkGeneratorRoute,
   ToolsIndexRoute: ToolsIndexRoute,
 }
 export const routeTree = rootRouteImport
