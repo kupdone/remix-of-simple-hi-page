@@ -76,10 +76,13 @@ export default defineConfig({
         { path: "/" },
         { path: "/about" },
         { path: "/blog" },
+        { path: "/services" },
         { path: "/compliance" },
         { path: "/insights" },
         { path: "/tools" },
         { path: "/tools/whatsapp-link-generator" },
+        { path: "/sitemap.xml" },
+        { path: "/rss.xml" },
       ],
     }),
 

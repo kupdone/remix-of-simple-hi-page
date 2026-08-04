@@ -12,6 +12,10 @@ import appCss from "../styles.css?url";
 import { AppSplash } from "@/components/AppSplash";
 import { CookieBanner } from "@/components/CookieBanner";
 import { TransitionOrigin } from "@/components/TransitionOrigin";
+import { Analytics } from "@/components/Analytics";
+
+const SITE_URL = "https://shinebetter.online";
+const GSC_VERIFICATION = import.meta.env.VITE_GSC_VERIFICATION as string | undefined;
 
 function NotFoundComponent() {
   return (
@@ -68,6 +72,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:site_name", content: "Shine Better" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      ...(GSC_VERIFICATION
+        ? [{ name: "google-site-verification", content: GSC_VERIFICATION }]
+        : []),
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -85,6 +92,49 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         type: "font/woff2",
         href: "/fonts/space-grotesk-600-latin.woff2",
         crossOrigin: "anonymous",
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Organization",
+              "@id": `${SITE_URL}/#organization`,
+              name: "Shine Better",
+              url: SITE_URL,
+              description:
+                "Shine Better is a digital studio crafting thoughtful websites, memorable brands, and digital experiences for businesses of every stage.",
+              founder: { "@type": "Person", name: "Mahin Islam" },
+            },
+            {
+              "@type": "ProfessionalService",
+              "@id": `${SITE_URL}/#localbusiness`,
+              name: "Shine Better",
+              url: SITE_URL,
+              image: `${SITE_URL}/favicon.png`,
+              priceRange: "$$",
+              areaServed: ["Australia", "United States", "United Kingdom"],
+              serviceType: [
+                "Website design and development",
+                "Website redesign",
+                "Shopify development",
+                "Local SEO",
+                "Social media management",
+                "AI business automation",
+              ],
+            },
+            {
+              "@type": "WebSite",
+              "@id": `${SITE_URL}/#website`,
+              url: SITE_URL,
+              name: "Shine Better",
+              publisher: { "@id": `${SITE_URL}/#organization` },
+            },
+          ],
+        }),
       },
     ],
   }),
@@ -113,7 +163,9 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <TransitionOrigin />
+      <Analytics />
       <AppSplash />
+
       <Outlet />
       <CookieBanner />
     </QueryClientProvider>

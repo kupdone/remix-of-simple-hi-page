@@ -10,11 +10,13 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ServicesRouteImport } from './routes/services'
 import { Route as RssDotxmlRouteImport } from './routes/rss[.]xml'
 import { Route as InsightsRouteImport } from './routes/insights'
 import { Route as ComplianceRouteImport } from './routes/compliance'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as SlugRouteImport } from './routes/$slug'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ToolsIndexRouteImport } from './routes/tools.index'
 import { Route as ToolsWhatsappLinkGeneratorRouteImport } from './routes/tools.whatsapp-link-generator'
@@ -24,6 +26,11 @@ import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RssDotxmlRoute = RssDotxmlRouteImport.update({
@@ -49,6 +56,11 @@ const BlogRoute = BlogRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SlugRoute = SlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -80,11 +92,13 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$slug': typeof SlugRoute
   '/about': typeof AboutRoute
   '/blog': typeof BlogRouteWithChildren
   '/compliance': typeof ComplianceRoute
   '/insights': typeof InsightsRoute
   '/rss.xml': typeof RssDotxmlRoute
+  '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
@@ -93,11 +107,13 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$slug': typeof SlugRoute
   '/about': typeof AboutRoute
   '/blog': typeof BlogRouteWithChildren
   '/compliance': typeof ComplianceRoute
   '/insights': typeof InsightsRoute
   '/rss.xml': typeof RssDotxmlRoute
+  '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
@@ -107,11 +123,13 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/$slug': typeof SlugRoute
   '/about': typeof AboutRoute
   '/blog': typeof BlogRouteWithChildren
   '/compliance': typeof ComplianceRoute
   '/insights': typeof InsightsRoute
   '/rss.xml': typeof RssDotxmlRoute
+  '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
@@ -122,11 +140,13 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/$slug'
     | '/about'
     | '/blog'
     | '/compliance'
     | '/insights'
     | '/rss.xml'
+    | '/services'
     | '/sitemap.xml'
     | '/blog/$slug'
     | '/solutions/$slug'
@@ -135,11 +155,13 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/$slug'
     | '/about'
     | '/blog'
     | '/compliance'
     | '/insights'
     | '/rss.xml'
+    | '/services'
     | '/sitemap.xml'
     | '/blog/$slug'
     | '/solutions/$slug'
@@ -148,11 +170,13 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/$slug'
     | '/about'
     | '/blog'
     | '/compliance'
     | '/insights'
     | '/rss.xml'
+    | '/services'
     | '/sitemap.xml'
     | '/blog/$slug'
     | '/solutions/$slug'
@@ -162,11 +186,13 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SlugRoute: typeof SlugRoute
   AboutRoute: typeof AboutRoute
   BlogRoute: typeof BlogRouteWithChildren
   ComplianceRoute: typeof ComplianceRoute
   InsightsRoute: typeof InsightsRoute
   RssDotxmlRoute: typeof RssDotxmlRoute
+  ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SolutionsSlugRoute: typeof SolutionsSlugRoute
   ToolsWhatsappLinkGeneratorRoute: typeof ToolsWhatsappLinkGeneratorRoute
@@ -180,6 +206,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/rss.xml': {
@@ -215,6 +248,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$slug': {
+      id: '/$slug'
+      path: '/$slug'
+      fullPath: '/$slug'
+      preLoaderRoute: typeof SlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -267,11 +307,13 @@ const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SlugRoute: SlugRoute,
   AboutRoute: AboutRoute,
   BlogRoute: BlogRouteWithChildren,
   ComplianceRoute: ComplianceRoute,
   InsightsRoute: InsightsRoute,
   RssDotxmlRoute: RssDotxmlRoute,
+  ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SolutionsSlugRoute: SolutionsSlugRoute,
   ToolsWhatsappLinkGeneratorRoute: ToolsWhatsappLinkGeneratorRoute,

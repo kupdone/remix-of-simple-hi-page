@@ -23,6 +23,22 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     X-Frame-Options = "SAMEORIGIN"
 
+# Legacy path redirects (permanent, so link equity carries over)
+[[redirects]]
+  from = "/services/:slug"
+  to = "/solutions/:slug"
+  status = 301
+
+[[redirects]]
+  from = "/solution/:slug"
+  to = "/solutions/:slug"
+  status = 301
+
+[[redirects]]
+  from = "/blog/category/:slug"
+  to = "/blog"
+  status = 301
+
 # Every page is prerendered to static HTML; anything unmatched falls back to
 # the client shell so deep links and refreshes still resolve.
 [[redirects]]
