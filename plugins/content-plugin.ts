@@ -63,6 +63,7 @@ function buildPayload(root: string) {
     blog: readDir(root, "content/blog"),
     solutions: readDir(root, "content/solutions"),
     pages: readDir(root, "content/pages"),
+    landing: readDir(root, "content/landing"),
   };
 }
 

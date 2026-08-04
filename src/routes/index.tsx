@@ -40,6 +40,7 @@ export const Route = createFileRoute("/")({
 
 const NAV = [
   { label: "Solutions", href: "#solutions" },
+  { label: "Services", to: "/services" as const },
   { label: "About", href: "#about" },
   { label: "FAQ", href: "#faq" },
   { label: "Tools", to: "/tools" as const },
@@ -539,12 +540,14 @@ function Footer() {
             </p>
           </div>
           <FooterCol title="Solutions" items={[
+            { l: "All services & locations", to: "/services" },
             { l: "Web Development", to: "/solutions/$slug", params: { slug: "web-development" } },
+            { l: "Website Redesign", to: "/solutions/$slug", params: { slug: "website-redesign" } },
+            { l: "Shopify Development", to: "/solutions/$slug", params: { slug: "shopify-development" } },
             { l: "Local SEO", to: "/solutions/$slug", params: { slug: "local-seo" } },
-            { l: "AI Assistant", to: "/solutions/$slug", params: { slug: "ai-assistant" } },
-            { l: "Social Media", to: "/solutions/$slug", params: { slug: "social-media" } },
-            { l: "E-commerce", to: "/solutions/$slug", params: { slug: "ecommerce" } },
+            { l: "AI Business Automation", to: "/solutions/$slug", params: { slug: "ai-business-automation" } },
           ]} />
+
 
           <FooterCol title="Free tools" items={[
             { l: "All tools", to: "/tools" },

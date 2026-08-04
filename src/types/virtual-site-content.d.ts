@@ -10,6 +10,6 @@ declare module "virtual:site-content" {
     data: Record<string, string | string[] | number | undefined>;
     rendered: RenderedMarkdown;
   }
-  const content: { blog: RawDoc[]; solutions: RawDoc[]; pages: RawDoc[] };
+  const content: { blog: RawDoc[]; solutions: RawDoc[]; pages: RawDoc[]; landing: RawDoc[] };
   export default content;
 }

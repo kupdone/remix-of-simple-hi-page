@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
-import { getAllPosts, getAllSolutions } from "@/lib/content";
+import { getAllLandingPages, getAllPosts, getAllSolutions } from "@/lib/content";
 
 const BASE_URL = "https://shinebetter.online";
 
@@ -17,9 +17,13 @@ export const Route = createFileRoute("/sitemap.xml")({
       GET: async () => {
         const staticEntries: Entry[] = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
+          { path: "/services", changefreq: "weekly", priority: "0.9" },
           { path: "/blog", changefreq: "weekly", priority: "0.8" },
           { path: "/about", changefreq: "monthly", priority: "0.6" },
           { path: "/insights", changefreq: "monthly", priority: "0.7" },
+          { path: "/tools", changefreq: "monthly", priority: "0.6" },
+          { path: "/tools/whatsapp-link-generator", changefreq: "monthly", priority: "0.6" },
+          { path: "/compliance", changefreq: "yearly", priority: "0.3" },
         ];
         const postEntries: Entry[] = getAllPosts().map((p) => ({
           path: `/blog/${p.slug}`,
@@ -32,7 +36,12 @@ export const Route = createFileRoute("/sitemap.xml")({
           changefreq: "monthly",
           priority: "0.8",
         }));
-        const entries = [...staticEntries, ...solutionEntries, ...postEntries];
+        const landingEntries: Entry[] = getAllLandingPages().map((l) => ({
+          path: `/${l.slug}`,
+          changefreq: "monthly",
+          priority: "0.8",
+        }));
+        const entries = [...staticEntries, ...solutionEntries, ...landingEntries, ...postEntries];
 
         const urls = entries
           .map((e) =>
